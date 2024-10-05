@@ -1,0 +1,8 @@
+# Ignora archivos temporales de desarrollo
+*.log
+*.tmp
+*.DS_Store
+
+# Ignora carpetas de dependencias de frameworks
+node_modules/
+dist/

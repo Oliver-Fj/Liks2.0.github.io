@@ -1,0 +1,519 @@
+:root[data-theme="light"] {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --background-color: #f5f6fa;
+    --card-background: #ffffff;
+    --text-color: #2c3e50;
+    --border-color: #e1e1e1;
+    --hover-color: #f8f9fa;
+    --shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --modal-overlay: rgba(0,0,0,0.5);
+    --neon-purple: #b624ff;
+    --neon-blue: #00c3ff;
+    --neon-green: #00ff88;
+}
+
+:root[data-theme="dark"] {
+    --primary-color: #ecf0f1;
+    --secondary-color: #3498db;
+    --background-color: #1a1a1a;
+    --card-background: #2c2c2c;
+    --text-color: #ecf0f1;
+    --border-color: #404040;
+    --hover-color: #363636;
+    --shadow: 0 2px 4px rgba(0,0,0,0.2);
+    --modal-overlay: rgba(0,0,0,0.7);
+    --neon-purple: #d27fff;
+    --neon-blue: #66dbff;
+    --neon-green: #7affb5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: var(--card-background);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    border: 2px solid var(--border-color);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-top h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-top h1 i {
+    color: var(--neon-purple);
+}
+
+/* Estilos neón para botones */
+.btn-neon-purple {
+    background-color: var(--neon-purple);
+    box-shadow: 0 0 10px var(--neon-purple);
+}
+
+.btn-neon-blue {
+    background-color: var(--neon-blue);
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.btn-neon-green {
+    background-color: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green);
+}
+
+.btn-neon-purple:hover,
+.btn-neon-blue:hover,
+.btn-neon-green:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px currentColor;
+}
+
+/* Resto de estilos... */
+.search-bar {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 24px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.btn-icon {
+    padding: 10px;
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.week-container {
+    background-color: var(--card-background);
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--border-color);
+    overflow: hidden;
+}
+
+.week-header {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-background);
+}
+
+.week-header:hover {
+    background-color: var(--hover-color);
+}
+
+.week-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.week-icons {
+    display: flex;
+    gap: 8px;
+    color: var(--secondary-color);
+}
+
+.week-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.week-content.active {
+    max-height: 2000px;
+    padding: 20px;
+    border-top: 2px solid var(--border-color);
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.link-card {
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    border: 2px solid var(--border-color);
+}
+
+.link-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.link-title {
+    margin-bottom: 12px;
+    color: var(--text-color);
+}
+
+.link-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s;
+    margin-bottom: 15px;
+}
+
+.link-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px var(--secondary-color);
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-overlay);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--card-background);
+    margin: 15% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-color);
+}
+
+.no-results i {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .actions {
+        justify-content: center;
+    }
+
+    .links-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mantenemos las variables de color existentes y agregamos más colores neón */
+:root[data-theme="light"] {
+    /* ... variables existentes ... */
+    --neon-purple: #b624ff;
+    --neon-blue: #00c3ff;
+    --neon-green: #00ff88;
+    --neon-pink: #ff00ff;
+    --neon-orange: #ff9900;
+    --neon-red: #ff0055;
+    --neon-yellow: #ffff00;
+    --neon-cyan: #00ffff;
+}
+
+:root[data-theme="dark"] {
+    /* ... variables existentes ... */
+    --neon-purple: #d27fff;
+    --neon-blue: #66dbff;
+    --neon-green: #7affb5;
+    --neon-pink: #ff99ff;
+    --neon-orange: #ffb366;
+    --neon-red: #ff668c;
+    --neon-yellow: #ffff99;
+    --neon-cyan: #99ffff;
+}
+
+/* Estilos neón para títulos de semanas */
+.week-title h2 {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Colores neón para cada semana */
+.week-container:nth-child(8n+1) .week-title h2 {
+    color: var(--neon-purple);
+    text-shadow: 0 0 10px var(--neon-purple),
+                 0 0 20px var(--neon-purple),
+                 0 0 30px var(--neon-purple);
+}
+
+.week-container:nth-child(8n+2) .week-title h2 {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue),
+                 0 0 20px var(--neon-blue),
+                 0 0 30px var(--neon-blue);
+}
+
+.week-container:nth-child(8n+3) .week-title h2 {
+    color: var(--neon-green);
+    text-shadow: 0 0 10px var(--neon-green),
+                 0 0 20px var(--neon-green),
+                 0 0 30px var(--neon-green);
+}
+
+.week-container:nth-child(8n+4) .week-title h2 {
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink),
+                 0 0 20px var(--neon-pink),
+                 0 0 30px var(--neon-pink);
+}
+
+.week-container:nth-child(8n+5) .week-title h2 {
+    color: var(--neon-orange);
+    text-shadow: 0 0 10px var(--neon-orange),
+                 0 0 20px var(--neon-orange),
+                 0 0 30px var(--neon-orange);
+}
+
+.week-container:nth-child(8n+6) .week-title h2 {
+    color: var(--neon-red);
+    text-shadow: 0 0 10px var(--neon-red),
+                 0 0 20px var(--neon-red),
+                 0 0 30px var(--neon-red);
+}
+
+.week-container:nth-child(8n+7) .week-title h2 {
+    color: var(--neon-yellow);
+    text-shadow: 0 0 10px var(--neon-yellow),
+                 0 0 20px var(--neon-yellow),
+                 0 0 30px var(--neon-yellow);
+}
+
+.week-container:nth-child(8n+8) .week-title h2 {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan),
+                 0 0 20px var(--neon-cyan),
+                 0 0 30px var(--neon-cyan);
+}
+
+/* Efecto hover para títulos */
+.week-title h2:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+/* Animación de pulso para los títulos */
+@keyframes neonPulse {
+    0% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.2);
+    }
+    100% {
+        filter: brightness(1);
+    }
+}
+
+.week-title h2 {
+    animation: neonPulse 2s infinite;
+}
+
+/* Mejorar la transición del colapso */
+.week-content {
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efecto hover neón para las secciones de semanas */
+.week-container {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.week-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.week-container:hover::before {
+    box-shadow: 0 0 15px var(--neon-purple),
+                0 0 25px var(--neon-purple),
+                0 0 35px var(--neon-purple);
+    border: 2px solid var(--neon-purple);
+}
+
+/* Estilos mejorados para el formulario */
+.modal-content {
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.modal-content:hover {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.modal-content h2 {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue),
+                 0 0 20px var(--neon-blue);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.form-group input,
+.form-group select {
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 10px var(--neon-purple);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+    outline: none;
+}
