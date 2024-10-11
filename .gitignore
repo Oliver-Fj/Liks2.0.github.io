@@ -6,3 +6,6 @@
 # Ignora carpetas de dependencias de frameworks
 node_modules/
 dist/
+
+vendor/
+.env
