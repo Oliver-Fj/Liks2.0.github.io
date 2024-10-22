@@ -10,56 +10,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
+// Configuración de errores para debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $request_uri = $_SERVER['REQUEST_URI'];
 $request_method = $_SERVER['REQUEST_METHOD'];
 
-// Eliminar cualquier parámetro de consulta de la URI
+// Eliminar parámetros de consulta y normalizar la ruta
 $request_uri = strtok($request_uri, '?');
+$request_uri = rtrim($request_uri, '/');
 
 error_log("Request URI: " . $request_uri);
 error_log("Request Method: " . $request_method);
 
-// Enrutamiento básico
-switch ($request_uri) {
-    case '/api/links':
-        switch ($request_method) {
-            case 'GET':
-                require __DIR__ . '/../src/api/read_links.php';
-                break;
-            case 'POST':
-                require __DIR__ . '/../src/api/create_link.php';
-                break;
-            case 'PUT':
-                require __DIR__ . '/../src/api/update_link.php';
-                break;
-            case 'DELETE':
-                require __DIR__ . '/../src/api/delete_link.php';
-                break;
-            default:
-                http_response_code(405);
-                echo json_encode(["message" => "Method not allowed"]);
-                break;
-        }
-        break;
-    case '/api/weeks':
-        switch ($request_method) {
-            case 'GET':
-                require __DIR__ . '/../src/api/read_weeks.php';
-                break;
-            case 'POST':
-                require __DIR__ . '/../src/api/create_week.php';
-                break;
-                case 'PUT':
-                    require __DIR__ . '/../src/api/update_week.php';
-                    break;
-            default:
-                http_response_code(405);
-                echo json_encode(["message" => "Method not allowed for /api/weeks"]);
-                break;
-        }
-        break;
-    default:
+// Definir la ruta base al directorio src
+$base_path = dirname(__DIR__) . '/src';
+
+// Mapeo de rutas y métodos a archivos
+$routes = [
+    'GET' => [
+        '/api/links' => $base_path . '/api/read_links.php',
+        '/api/weeks' => $base_path . '/api/read_weeks.php',
+        '/api/check-auth' => $base_path . '/api/check_auth.php'
+    ],
+    'POST' => [
+        '/api/links' => $base_path . '/api/create_link.php',
+        '/api/weeks' => $base_path . '/api/create_week.php',
+        '/api/login' => $base_path . '/api/login.php',
+        '/api/logout' => $base_path . '/api/logout.php'
+    ],
+    'PUT' => [
+        '/api/links' => $base_path . '/api/update_link.php',
+        '/api/weeks' => $base_path . '/api/update_week.php'
+    ],
+    'DELETE' => [
+        '/api/links' => $base_path . '/api/delete_link.php'
+    ]
+];
+
+// Verificar si la ruta y el método existen
+if (isset($routes[$request_method][$request_uri])) {
+    $file_path = $routes[$request_method][$request_uri];
+    
+    if (file_exists($file_path)) {
+        require $file_path;
+    } else {
+        error_log("File not found: " . $file_path);
         http_response_code(404);
-        echo json_encode(["message" => "Route not found"]);
-        break;
+        echo json_encode([
+            "message" => "API endpoint file not found",
+            "path" => $file_path
+        ]);
+    }
+} else {
+    error_log("Route not found or method not allowed: " . $request_method . " " . $request_uri);
+    http_response_code(404);
+    echo json_encode([
+        "message" => "Route not found or method not allowed",
+        "method" => $request_method,
+        "uri" => $request_uri
+    ]);
 }
+?>
