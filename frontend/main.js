@@ -8,12 +8,22 @@ class LinkManager {
             'fa-database', 'fa-microchip', 'fa-code-branch'
         ];
         this.neonColors = ['btn-neon-purple', 'btn-neon-blue', 'btn-neon-green'];
-        this.API_URL = 'http://localhost:8000/api'; // Cambia esto a la URL de tu backend en producción
+        this.API_URL = this.getApiUrl(); // Cambia esto a la URL de tu backend en producción
         this.isAdmin = false;
         this.initializeElements();
         this.setupEventListeners();
         this.loadData();
         this.updateAdminButtons(false);
+    }
+
+    // Método para obtener la URL de la API según el entorno
+    getApiUrl() {
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            return 'http://localhost:8000/api';
+        } else {
+            // Reemplaza esta URL con tu dominio de InfinityFree
+            return 'http://oliverlinksmanager.kesug.com/api';
+        }
     }
 
     initializeElements() {
