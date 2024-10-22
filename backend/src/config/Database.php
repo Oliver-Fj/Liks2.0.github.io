@@ -1,9 +1,9 @@
 <?php
 class Database {
-    private $host = "localhost";
-    private $db_name = "gestor_links";
-    private $username = "root";
-    private $password = "";
+    private $host = "sql111.infinityfree.com";
+    private $db_name = "if0_37567749_gestor_links";
+    private $username = "if0_37567749";
+    private $password = "Uj8OoK22AgW3";
     public $conn;
 
     public function getConnection() {

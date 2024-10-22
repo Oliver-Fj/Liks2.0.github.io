@@ -22,7 +22,7 @@ class LinkManager {
             return 'http://localhost:8000/api';
         } else {
             // Reemplaza esta URL con tu dominio de InfinityFree
-            return 'http://oliverlinksmanager.kesug.com/api';
+            return 'oliverlinksmanager.kesug.com';
         }
     }
 
