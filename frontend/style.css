@@ -61,7 +61,56 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+}
+
+.auth-controls {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.btn-neon-theme {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Estilos para el tema claro */
+[data-theme="light"] .btn-neon-theme {
+    color: #ff8c00;
+    box-shadow: 0 0 5px #ff8c00, 0 0 10px #ff8c00;
+}
+
+[data-theme="light"] .btn-neon-theme:hover {
+    box-shadow: 0 0 10px #ff8c00, 0 0 20px #ff8c00;
+}
+
+/* Estilos para el tema oscuro */
+[data-theme="dark"] .btn-neon-theme {
+    color: #00ffff;
+    box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+}
+
+[data-theme="dark"] .btn-neon-theme:hover {
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+}
+
+.btn-neon-orange {
+    background-color: #ff8c00;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px #ff8c00, 0 0 10px #ff8c00, 0 0 15px #ff8c00, 0 0 20px #ff8c00;
+}
+
+.btn-neon-orange:hover {
+    box-shadow: 0 0 10px #ff8c00, 0 0 20px #ff8c00, 0 0 30px #ff8c00, 0 0 40px #ff8c00;
 }
 
 .header-top h1 {
@@ -125,6 +174,8 @@ header {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
+    margin: 10px 0;
+    justify-content: center;
 }
 
 .btn {
@@ -140,6 +191,31 @@ header {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 14px;
+}
+
+.btn-disabled {
+    opacity: 0.5;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+}
+
+.btn-neon-purple, .btn-neon-blue {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-neon-purple:not(.btn-disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(156, 39, 176, 0.3);
+}
+
+.btn-neon-blue:not(.btn-disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
 }
 
 .btn-icon {
@@ -516,4 +592,50 @@ header {
     border-color: var(--neon-blue);
     box-shadow: 0 0 15px var(--neon-blue);
     outline: none;
+}
+
+.btn-neon-orange {
+    background-color: #ff8c00;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px #ff8c00, 0 0 10px #ff8c00, 0 0 15px #ff8c00, 0 0 20px #ff8c00;
+}
+
+.btn-neon-orange:hover {
+    box-shadow: 0 0 10px #ff8c00, 0 0 20px #ff8c00, 0 0 30px #ff8c00, 0 0 40px #ff8c00;
+}
+
+.admin-only {
+    display: none;
+}
+
+/* Estilos para el formulario de inicio de sesión de SweetAlert2 */
+.swal2-popup {
+    background-color: #1a1a2e !important;
+    border: 2px solid #ff8c00 !important;
+    box-shadow: 0 0 10px #ff8c00, 0 0 20px #ff8c00 !important;
+}
+
+.swal2-title, .swal2-content {
+    color: #fff !important;
+}
+
+.swal2-input {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid #ff8c00 !important;
+    color: #fff !important;
+    box-shadow: 0 0 5px #ff8c00 !important;
+}
+
+.swal2-confirm {
+    background-color: #ff8c00 !important;
+    box-shadow: 0 0 5px #ff8c00, 0 0 10px #ff8c00 !important;
+}
+
+.swal2-confirm:hover {
+    box-shadow: 0 0 10px #ff8c00, 0 0 20px #ff8c00 !important;
 }
