@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Links by Oliver007</title>
+    <link rel="icon" href="./images/favicon.ico">
+    <link rel="stylesheet" href="./frontend/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Agregar SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>Gestor de Links <i class="fas fa-rocket"></i></h1>
+                <div class="header-controls">
+                    <button id="themeToggle" class="btn btn-neon-theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="auth-controls">
+                <button id="loginBtn" class="btn btn-neon-orange">
+                    <i class="fas fa-user-lock"></i> Iniciar sesión
+                </button>
+                <button id="logoutBtn" class="btn btn-neon-orange" style="display: none;">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                </button>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar links...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="actions">
+                <button id="addWeekBtn" class="btn btn-neon-purple">
+                    <i class="fas fa-plus"></i> Nueva Semana
+                </button>
+                <button id="addLinkBtn" class="btn btn-neon-blue">
+                    <i class="fas fa-link"></i> Nuevo Link
+                </button>
+            </div>
+        </header>
+
+        <!-- Modal para agregar links -->
+        <div id="linkModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2><i class="fas fa-plus-circle"></i> Agregar Nuevo Link</h2>
+                <form id="linkForm">
+                    <div class="form-group">
+                        <label for="linkTitle">Título:</label>
+                        <input type="text" id="linkTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="linkUrl">URL:</label>
+                        <input type="url" id="linkUrl" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="linkWeek">Semana:</label>
+                        <select id="linkWeek" required>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-neon-green">Guardar Link</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contenedor para las semanas -->
+        <main id="weeksContainer">
+            <!-- Las semanas se generarán dinámicamente aquí -->
+        </main>
+
+        <!-- Mensaje de no resultados -->
+        <div id="noResults" class="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <p>No se encontraron links que coincidan con tu búsqueda</p>
+        </div>
+    </div>
+    <script src="./frontend/main.js"></script>
+</body>
+</html>
