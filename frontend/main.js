@@ -22,7 +22,7 @@ class LinkManager {
             return 'http://localhost:8000/api';
         } else {
             // Reemplaza esta URL con tu dominio de InfinityFree
-            return 'http://oliverlinkmanagers.wuaze.com/api';
+            return 'http://oliverlinkmanagers.wuaze.com';
         }
     }
 
@@ -149,11 +149,20 @@ class LinkManager {
 
     async loadData() {
         try {
+            console.log('Intentando cargar datos desde:', this.API_URL); // Para debugging
+
             const [linksResponse, weeksResponse, userResponse] = await Promise.all([
-                fetch(`${this.API_URL}/links`),
-                fetch(`${this.API_URL}/weeks`),
-                fetch(`${this.API_URL}/user`)
+                fetch(`${this.API_URL}/api/links`),
+                fetch(`${this.API_URL}/api/weeks`),
+                fetch(`${this.API_URL}/api/user`)
             ]);
+
+            // Log para debugging
+            console.log('Status de respuestas:', {
+                links: linksResponse.status,
+                weeks: weeksResponse.status,
+                user: userResponse.status
+            });
             
             if (!linksResponse.ok || !weeksResponse.ok || !userResponse.ok) {
                 throw new Error('Error al cargar los datos');
@@ -165,6 +174,7 @@ class LinkManager {
 
             this.links = linksData.records || [];
             this.weeks = weeksData.records || [];
+            this.isAdmin = userData.isAdmin;
             
             // Solo actualizamos isAdmin si no estamos ya autenticados
             if (!this.isAdmin) {
@@ -203,7 +213,7 @@ class LinkManager {
 
     async login(username, password) {
         try {
-            const response = await fetch(`${this.API_URL}/login`, {
+            const response = await fetch(`${this.API_URL}/api/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
