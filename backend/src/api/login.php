@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Headers necesarios
-header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
+header("Access-Control-Allow-Origin: https://oliver-fj.github.io/Liks2.0.github.io"");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Max-Age: 3600");

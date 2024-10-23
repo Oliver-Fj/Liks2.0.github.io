@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: https://oliver-fj.github.io/Liks2.0.github.io/");
+header("Access-Control-Allow-Origin: https://oliver-fj.github.io/Liks2.0.github.io");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
 header("Access-Control-Max-Age: 3600");
@@ -17,9 +17,17 @@ ini_set('display_errors', 1);
 $request_uri = $_SERVER['REQUEST_URI'];
 $request_method = $_SERVER['REQUEST_METHOD'];
 
+// Log para debugging
+error_log("Request URI inicial: " . $request_uri);
+
 // Eliminar parámetros de consulta y normalizar la ruta
 $request_uri = strtok($request_uri, '?');
 $request_uri = rtrim($request_uri, '/');
+
+// Si la URL no empieza con /api/, añadirlo
+if (strpos($request_uri, '/api/') === false) {
+    $request_uri = '/api' . $request_uri;
+}
 
 error_log("Request URI: " . $request_uri);
 error_log("Request Method: " . $request_method);
